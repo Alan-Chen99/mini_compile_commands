@@ -21,5 +21,7 @@ cleanAndStopMiniCompileCommandsServer() {
 	wait $MINI_COMPILE_COMMANDS_PID           # wait for server to shutdown
 }
 
-preConfigureHooks+=(startMiniCompileCommandsServer)
-postInstallHooks+=(cleanAndStopMiniCompileCommandsServer)
+if [[ -z "${IN_NIX_SHELL-}" ]]; then
+	preConfigureHooks+=(startMiniCompileCommandsServer)
+	postInstallHooks+=(cleanAndStopMiniCompileCommandsServer)
+fi

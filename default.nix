@@ -37,6 +37,9 @@
       preHook =
         old.preHook
         + ''
+          if [[ -n $IN_NIX_SHELL ]] then
+            unset MCC_BUILD_DIR
+          fi
           if [[ -n $MCC_BUILD_DIR ]]; then
             export MCC_BUILD_DIR=$(eval echo $MCC_BUILD_DIR)
             echo "MCC: using $MCC_BUILD_DIR to build"
