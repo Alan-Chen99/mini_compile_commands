@@ -6,6 +6,8 @@ import sys
 from pathlib import Path
 
 directory = Path(sys.argv[1]).absolute()
+if not str(directory).startswith("/nix"):
+    print("mini_compile_commands_clean.py: not in nix store; not doing anything")
 
 keep_regex_raw = os.getenv("MCC_KEEP_REGEXP")
 
